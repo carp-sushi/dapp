@@ -4,8 +4,8 @@ defmodule Dapp.Data.Repo.UserRepo do
   """
   @behaviour Dapp.Data.Spec.UserRepoSpec
 
-  alias Dapp.{Error, Repo}
   alias Dapp.Data.Schema.User
+  alias Dapp.{Error, Repo}
 
   import Ecto.Query
 

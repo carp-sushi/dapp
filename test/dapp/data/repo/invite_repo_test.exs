@@ -1,8 +1,8 @@
 defmodule Dapp.Data.Repo.InviteRepoTest do
   use ExUnit.Case, async: true
-  alias Ecto.Adapters.SQL.Sandbox
   alias Dapp.Data.Repo.UserRepo
   alias Dapp.Repo
+  alias Ecto.Adapters.SQL.Sandbox
 
   # Repo being tested
   alias Dapp.Data.Repo.InviteRepo
@@ -24,7 +24,7 @@ defmodule Dapp.Data.Repo.InviteRepoTest do
   end
 
   # Create user helper.
-  defp create_user() do
+  defp create_user do
     role = Repo.insert!(FakeData.generate_role())
     params = %{blockchain_address: FakeData.generate_blockchain_address(), role_id: role.id}
     {:ok, user} = UserRepo.create(params)

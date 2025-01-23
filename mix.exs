@@ -10,6 +10,7 @@ defmodule Dapp.MixProject do
       deps: deps(),
       elixirc_paths: elixirc_paths(Mix.env()),
       aliases: aliases(),
+      preferred_cli_env: [quality: :test],
       test_coverage: [
         summary: [
           threshold: 80
@@ -41,7 +42,8 @@ defmodule Dapp.MixProject do
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.7.2"},
       {:postgrex, "~> 0.16.5"},
-      {:hammox, "~> 0.7", only: :test}
+      {:hammox, "~> 0.7", only: :test},
+      {:credo, "~> 1.7.11", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -51,7 +53,8 @@ defmodule Dapp.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"],
+      quality: ["test", "credo --strict"]
     ]
   end
 
