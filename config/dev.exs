@@ -8,3 +8,6 @@ config :dapp, Dapp.Repo,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 4
+
+config :dapp,
+  http_port: 8081

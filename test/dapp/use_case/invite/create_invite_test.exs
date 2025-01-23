@@ -31,8 +31,7 @@ defmodule Dapp.UseCase.Invite.CreateInviteTest do
 
     test "should fail to create a new invite given invalid args", ctx do
       args = Map.merge(ctx.args, %{email: "a@"})
-      assert {:error, error} = CreateInvite.execute(args)
-      assert error.message == "invalid invite"
+      assert {:error, %{message: "invalid invite"}} = CreateInvite.execute(args)
     end
   end
 end

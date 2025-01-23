@@ -1,5 +1,6 @@
 defmodule Dapp.UseCase.User.GetProfileTest do
   use ExUnit.Case, async: true
+
   # Use case being tested
   alias Dapp.UseCase.User.GetProfile
 
@@ -17,8 +18,7 @@ defmodule Dapp.UseCase.User.GetProfileTest do
     end
 
     test "should return an error when executed with empty args" do
-      assert {:error, error} = GetProfile.execute(%{})
-      assert error.message == "missing required arg: user"
+      assert {:error, %{message: "missing required arg: user"}} = GetProfile.execute(%{})
     end
   end
 end

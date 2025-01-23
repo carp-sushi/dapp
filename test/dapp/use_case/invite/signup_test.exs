@@ -26,14 +26,12 @@ defmodule Dapp.UseCase.Invite.SignupTest do
 
     test "should fail to create a new user when the invite is not found", ctx do
       args = Map.merge(ctx.args, %{invite_code: Nanoid.generate()})
-      assert {:error, error} = Signup.execute(args)
-      assert error.message == "invite not found"
+      assert {:error, %{message: "invite not found"}} = Signup.execute(args)
     end
 
     test "should fail to create a new user with invalid params", ctx do
       args = %{invite_code: ctx.args.invite_code, email: ctx.args.email}
-      assert {:error, error} = Signup.execute(args)
-      assert error.message == "invalid user params"
+      assert {:error, %{message: "invalid user params"}} = Signup.execute(args)
     end
   end
 end

@@ -11,7 +11,7 @@ compile:
 
 .PHONY: test
 test:
-	mix test --trace
+	mix test --trace --cover
 
 .PHONY: clean
 clean:

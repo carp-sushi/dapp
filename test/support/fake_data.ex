@@ -10,16 +10,16 @@ defmodule FakeData do
 
   @doc "Generate a fake email address"
   def generate_email_addresss,
-    do: "email#{Nanoid.generate(6)}@fakedomain.com"
+    do: "email#{Nanoid.generate(5)}@fakedomain.com"
 
   @doc "Generate a fake name"
   def generate_name,
-    do: "name#{Nanoid.generate(6)}"
+    do: "name#{Nanoid.generate(5)}"
 
   @doc "Generate a fake role"
   def generate_role,
     do: %Role{
-      id: :rand.uniform(1000),
+      id: :rand.uniform(100),
       name: generate_name()
     }
 

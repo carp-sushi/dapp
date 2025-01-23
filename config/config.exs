@@ -8,7 +8,8 @@ config :dapp,
 config :dapp,
   auth_header: "x-account-address",
   max_records: 100,
-  uri_base: "/dapp/api/v1"
+  uri_base: "/dapp/api/v1",
+  http_port: 8080
 
 # Configure nanoid size, alphabet.
 config :nanoid,

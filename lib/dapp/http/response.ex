@@ -14,10 +14,6 @@ defmodule Dapp.Http.Response do
   def bad_request(conn, error),
     do: send_json(conn, %{error: error}, 400)
 
-  @doc "No content success helper."
-  def no_content(conn),
-    do: send_resp(conn, 204, "")
-
   @doc "Not found error helper."
   def not_found(conn) do
     send_json(conn, %{error: %{message: "route not found"}}, 404)

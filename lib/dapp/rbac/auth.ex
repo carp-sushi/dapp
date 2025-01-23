@@ -4,17 +4,14 @@ defmodule Dapp.Rbac.Auth do
   """
   use Dapp.Data.Keeper
   import Plug.Conn
-
   alias Dapp.Http.Response
-  alias Dapp.Rbac.Header
 
   @doc false
   def init(opts), do: opts
 
-  @doc "Authorize users with valid blockchain address headers."
+  @doc "Authorize requests with previously verified blockchain address headers."
   def call(conn, _opts) do
-    conn
-    |> Header.auth_header()
+    Map.get(conn.assigns, :blockchain_address)
     |> user_repo().get_by_address()
     |> case do
       nil -> Response.unauthorized(conn)
