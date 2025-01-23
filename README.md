@@ -77,5 +77,5 @@ The new user should be able to access their profile.
 
 ```shell
 curl -is -XGET -H "x-account-address: tp18vd8fpwxzck93qlwghaj6arh4p7c5n89x8kjon" \
-  http://localhost:8081/dapp/api/v1/profile
+  http://localhost:8081/dapp/api/v1/users/profile
 ```

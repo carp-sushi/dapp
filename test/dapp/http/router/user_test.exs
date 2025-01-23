@@ -29,6 +29,15 @@ defmodule Dapp.Http.Router.UserTest do
     end
   end
 
+  describe "GET /users/profile" do
+    test "returns the profile for an authorized user" do
+      user = UserUtil.mock_http_user()
+      req = conn(:get, "/profile") |> put_req_header(@auth_header, user.blockchain_address)
+      rep = UserRouter.call(req, [])
+      assert rep.status == 200
+    end
+  end
+
   describe "GET /nonesuch" do
     test "returns a 404" do
       user = UserUtil.mock_http_user()

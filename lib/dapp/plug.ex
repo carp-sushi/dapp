@@ -18,7 +18,6 @@ defmodule Dapp.Plug do
 
   # Top-level routing
   forward("#{@uri_base}/invites", to: Router.Invite)
-  forward("#{@uri_base}/profile", to: Router.Profile)
   forward("#{@uri_base}/roles", to: Router.Role)
   forward("#{@uri_base}/signup", to: Router.Signup)
   forward("#{@uri_base}/users", to: Router.User)

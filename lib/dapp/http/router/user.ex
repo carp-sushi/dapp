@@ -4,7 +4,7 @@ defmodule Dapp.Http.Router.User do
 
   alias Dapp.Http.{Controller, Response}
   alias Dapp.Rbac.{Access, Auth, Header}
-  alias Dapp.UseCase.User.ListUsers
+  alias Dapp.UseCase.User.{GetProfile, ListUsers}
 
   plug(:match)
   plug(Header)
@@ -17,6 +17,11 @@ defmodule Dapp.Http.Router.User do
     Access.admin(conn, fn ->
       Controller.execute(conn, ListUsers)
     end)
+  end
+
+  # All authorized users can view their profile.
+  get "/profile" do
+    Controller.execute(conn, GetProfile)
   end
 
   # Catch-all responds with a 404.
