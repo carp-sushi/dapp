@@ -9,7 +9,7 @@ defmodule Dapp.Rbac.Auth do
   @doc false
   def init(opts), do: opts
 
-  @doc "Authorize requests with previously verified blockchain address headers."
+  @doc "Authorize requests that have a verified blockchain address."
   def call(conn, _opts) do
     Map.get(conn.assigns, :blockchain_address)
     |> user_repo().get_by_address()

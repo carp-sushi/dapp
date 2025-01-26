@@ -6,9 +6,6 @@ defmodule Dapp.Util.Validate do
   alias Ecto.Changeset
   import Ecto.Changeset
 
-  # Read blockchain network prefix from env var.
-  @network_prefix System.get_env("NETWORK_PREFIX", "pb")
-
   @doc "Execute a function with an input map if it contains all required keys."
   def execute(map, keys, func) do
     if is_nil(map) || missing_keys?(map, keys) do
@@ -61,9 +58,11 @@ defmodule Dapp.Util.Validate do
 
   # Validate blockchain address prefix.
   defp validate_address_prefix(changeset, address) do
-    case String.starts_with?(address, @network_prefix) do
+    network_prefix = System.get_env("NETWORK_PREFIX", "pb")
+
+    case String.starts_with?(address, network_prefix) do
       true -> changeset
-      false -> add_error(changeset, :blockchain_address, "must have prefix: #{@network_prefix}")
+      false -> add_error(changeset, :blockchain_address, "must have prefix: #{network_prefix}")
     end
   end
 end

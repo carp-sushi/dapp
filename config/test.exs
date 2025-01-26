@@ -7,7 +7,7 @@ config :dapp, Dapp.Repo,
   username: "postgres",
   password: "password1",
   hostname: "localhost",
-  database: "dapp_minimal_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "dapp_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 4
 

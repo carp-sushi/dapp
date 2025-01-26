@@ -1,6 +1,6 @@
 defmodule Dapp.Http.Router.Signup do
   @moduledoc """
-  Signup specific router. Only requires account address header.
+  Handle signup HTTP requests.
   """
   use Plug.Router
 

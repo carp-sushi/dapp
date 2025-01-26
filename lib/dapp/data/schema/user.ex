@@ -32,7 +32,7 @@ defmodule Dapp.Data.Schema.User do
     |> Validate.blockchain_address_changeset()
   end
 
-  # Map a user schema struct to a dto profile map.
+  # Map a user schema struct to a data transfer object.
   defimpl Dto, for: __MODULE__ do
     def from_schema(struct),
       do: %{

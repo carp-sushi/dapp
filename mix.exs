@@ -18,7 +18,6 @@ defmodule Dapp.MixProject do
         ignore_modules: [
           FakeData,
           InviteUtil,
-          TestUtil,
           RoleUtil,
           UserUtil
         ]
@@ -58,7 +57,7 @@ defmodule Dapp.MixProject do
     ]
   end
 
-  # Add mocks to path in test
+  # Add fake data generators and mock helpers to path in test
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 end

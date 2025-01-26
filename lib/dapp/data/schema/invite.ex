@@ -31,8 +31,9 @@ defmodule Dapp.Data.Schema.Invite do
     |> unique_constraint(:email)
   end
 
-  # Map an invite schema struct to a dto map.
+  # Map an invite schema struct to a data transfer object.
   defimpl Dto, for: __MODULE__ do
-    def from_schema(struct), do: %{code: struct.id, email: struct.email}
+    def from_schema(struct),
+      do: %{code: struct.id, email: struct.email}
   end
 end

@@ -1,7 +1,7 @@
 import Config
 
 config :dapp, Dapp.Repo,
-  database: "dapp_minimal_dev",
+  database: "dapp_dev",
   username: "postgres",
   password: "password1",
   hostname: "localhost",

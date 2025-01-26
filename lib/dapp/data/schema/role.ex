@@ -23,8 +23,9 @@ defmodule Dapp.Data.Schema.Role do
     |> unique_constraint(:name)
   end
 
-  # Map a role schema struct to a dto map.
+  # Map a role schema struct to a data transfer object.
   defimpl Dto, for: __MODULE__ do
-    def from_schema(struct), do: %{id: struct.id, name: struct.name}
+    def from_schema(struct),
+      do: %{id: struct.id, name: struct.name}
   end
 end

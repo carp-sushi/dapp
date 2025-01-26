@@ -1,5 +1,7 @@
 defmodule Dapp.Http.Router.User do
-  @moduledoc "User routes."
+  @moduledoc """
+  Handle user HTTP requests.
+  """
   use Plug.Router
 
   alias Dapp.Http.{Controller, Response}

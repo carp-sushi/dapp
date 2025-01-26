@@ -1,6 +1,6 @@
 defmodule Dapp.Http.Router.Invite do
   @moduledoc """
-  Maps authorized HTTP requests to use cases.
+  Handle invite HTTP requests.
   """
   use Plug.Router
 

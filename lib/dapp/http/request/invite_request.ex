@@ -1,6 +1,6 @@
 defmodule Dapp.Http.Request.InviteRequest do
   @moduledoc """
-  Validate invite requests.
+  Validate requests to create invites.
   """
   alias Dapp.Error
 

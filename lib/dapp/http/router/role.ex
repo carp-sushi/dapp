@@ -1,5 +1,7 @@
 defmodule Dapp.Http.Router.Role do
-  @moduledoc "Router for role endpoints."
+  @moduledoc """
+  Handle role HTTP requests.
+  """
   use Plug.Router
 
   alias Dapp.Http.{Controller, Response}
