@@ -8,24 +8,34 @@ defmodule Dapp.Data.Schema.UserTest do
   setup do
     %{
       valid_params: %{
-        blockchain_address: "tp18vd8fpwxzck93qlwghaj6arh4p7c5n89x8kskz",
-        name: "Jon Doe",
-        email: "jon.doe@gmail.com",
+        blockchain_address: FakeData.generate_blockchain_address(),
+        name: FakeData.generate_name(),
+        email: FakeData.generate_email_addresss(),
+        role_id: FakeData.generate_role().id
+      },
+      bad_prefix: %{
+        blockchain_address: Nanoid.generate(41),
+        email: FakeData.generate_email_addresss(),
         role_id: 1
       },
-      bad_prefix: %{blockchain_address: "zz17vd8fpwxzck93qlwghaj6arh4p7c5n89x8kskz", role_id: 1},
-      too_short: %{blockchain_address: "tp19vd8fpwxzck93q", role_id: 1},
+      too_short: %{
+        blockchain_address: "tp#{Nanoid.generate(10)}",
+        email: FakeData.generate_email_addresss(),
+        role_id: 1
+      },
       too_long: %{
-        blockchain_address: "tp16vd8fpwxzck93q1118vd8fpwxzck93qlwghaj6arh4p7c5n89x8kskz8vd8skz",
+        blockchain_address: "tp#{Nanoid.generate(60)}",
+        email: FakeData.generate_email_addresss(),
         role_id: 1
       },
       email_too_short: %{
         email: "a@",
-        blockchain_address: "tp18vd8fpwxzck93qlwghaj6arh4p7c5n89x8kskz",
+        blockchain_address: FakeData.generate_blockchain_address(),
         role_id: 1
       },
       missing_role_id: %{
-        blockchain_address: "tp18vd8fpwxzck93qlwghaj6arh4p7c5n89x8kskz"
+        blockchain_address: FakeData.generate_blockchain_address(),
+        email: FakeData.generate_email_addresss()
       }
     }
   end

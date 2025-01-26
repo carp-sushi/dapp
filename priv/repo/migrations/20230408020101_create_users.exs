@@ -5,7 +5,7 @@ defmodule Dapp.Repo.Migrations.CreateUsers do
     create table(:users, primary_key: false) do
       add :id, :string, size: 21, primary_key: true
       add :blockchain_address, :string, null: false
-      add :email, :string
+      add :email, :string, null: false
       add :name, :string
       add :role_id, references(:roles), null: false
       timestamps()

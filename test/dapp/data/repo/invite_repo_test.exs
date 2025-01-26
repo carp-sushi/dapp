@@ -26,8 +26,9 @@ defmodule Dapp.Data.Repo.InviteRepoTest do
   # Create user helper.
   defp create_user do
     role = Repo.insert!(FakeData.generate_role())
-    params = %{blockchain_address: FakeData.generate_blockchain_address(), role_id: role.id}
-    {:ok, user} = UserRepo.create(params)
+    address = FakeData.generate_blockchain_address()
+    email = FakeData.generate_email_addresss()
+    {:ok, user} = UserRepo.create(%{blockchain_address: address, email: email, role_id: role.id})
     {:ok, user, role}
   end
 

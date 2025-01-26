@@ -24,7 +24,7 @@ defmodule Dapp.Data.Schema.User do
   def changeset(struct, params) do
     struct
     |> cast(params, [:blockchain_address, :email, :name, :role_id])
-    |> validate_required([:blockchain_address, :role_id])
+    |> validate_required([:blockchain_address, :email, :role_id])
     |> validate_length(:email, min: 3, max: 255)
     |> validate_length(:name, max: 255)
     |> unique_constraint(:blockchain_address)
