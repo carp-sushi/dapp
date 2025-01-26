@@ -28,6 +28,7 @@ defmodule Dapp.Data.Schema.User do
     |> validate_length(:email, min: 3, max: 255)
     |> validate_length(:name, max: 255)
     |> unique_constraint(:blockchain_address)
+    |> unique_constraint(:email)
     |> foreign_key_constraint(:role_id)
     |> Validate.blockchain_address_changeset()
   end

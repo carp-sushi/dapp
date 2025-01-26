@@ -11,5 +11,6 @@ defmodule Dapp.Repo.Migrations.CreateUsers do
       timestamps()
     end
     create unique_index(:users, [:blockchain_address])
+    create unique_index(:users, [:email])
   end
 end
