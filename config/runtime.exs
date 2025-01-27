@@ -6,6 +6,11 @@ if config_env() == :prod do
   db_pool_size = System.get_env("DB_POOL_SIZE") || "10"
   db_schema = System.get_env("DB_SCHEMA") || raise "DB_SCHEMA not defined"
 
+  # Verify network prefix has been set correctly
+  if System.get_env("NETWORK_PREFIX") not in ["tp", "pb"] do
+    raise "NETWORK_PREFIX must be set to \"tp\" or \"pb\""
+  end
+
   config :dapp, Dapp.Repo,
     url: db_url,
     pool_size: String.to_integer(db_pool_size),
