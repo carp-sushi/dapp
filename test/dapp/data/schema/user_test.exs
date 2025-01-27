@@ -36,6 +36,10 @@ defmodule Dapp.Data.Schema.UserTest do
       missing_role_id: %{
         blockchain_address: FakeData.generate_blockchain_address(),
         email: FakeData.generate_email_addresss()
+      },
+      missing_email: %{
+        blockchain_address: FakeData.generate_blockchain_address(),
+        role_id: 1
       }
     }
   end
@@ -80,6 +84,12 @@ defmodule Dapp.Data.Schema.UserTest do
       result = User.changeset(%User{}, ctx.missing_role_id)
       refute result.valid?
       assert result.errors[:role_id], "expected role_id error"
+    end
+
+    test "fails when email is missing", ctx do
+      result = User.changeset(%User{}, ctx.missing_email)
+      refute result.valid?
+      assert result.errors[:email], "expected email error"
     end
   end
 end
