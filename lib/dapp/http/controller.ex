@@ -2,6 +2,7 @@ defmodule Dapp.Http.Controller do
   @moduledoc """
   HTTP request handler.
   """
+  alias Dapp.Error
   alias Dapp.Http.{Presenter, Response}
   require Logger
 
@@ -15,6 +16,6 @@ defmodule Dapp.Http.Controller do
   rescue
     e ->
       Logger.error(Exception.format(:error, e, __STACKTRACE__))
-      Response.send_json(conn, %{error: %{message: "internal error"}}, 500)
+      Response.send_json(conn, Error.new("internal error"), 500)
   end
 end
