@@ -7,8 +7,12 @@ defmodule Dapp.UseCase.Invite.Signup do
   use Dapp.Data.Keeper
 
   @behaviour Dapp.UseCase
-  def execute(args),
-    do: Validate.execute(args, [:invite_code, :email], &signup/1)
+  def execute(args) do
+    case Validate.args(args, [:invite_code, :email]) do
+      {:ok, _} -> signup(args)
+      error -> error
+    end
+  end
 
   # Lookup an invite using validated args and create a new user if found.
   defp signup(args) do

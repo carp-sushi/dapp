@@ -7,11 +7,11 @@ defmodule Dapp.Util.Validate do
   import Ecto.Changeset
 
   @doc "Execute a function with an input map if it contains all required keys."
-  def execute(map, keys, func) do
+  def args(map, keys) do
     if is_nil(map) || missing_keys?(map, keys) do
       Error.new("missing required args: #{inspect(keys)}")
     else
-      func.(map)
+      {:ok, map}
     end
   end
 
