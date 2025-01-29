@@ -2,13 +2,14 @@ defmodule Dapp.UseCase.Invite.CreateInvite do
   @moduledoc """
   Use case for creating a user invites.
   """
-  alias Dapp.{Dto, Util.Validate}
+  alias Dapp.Dto
+  alias Dapp.Util.Validate
   use Dapp.Data.Keeper
 
   @behaviour Dapp.UseCase
   def execute(args) do
     case Validate.args(args, [:email, :user, :role_id]) do
-      {:ok, _} -> create_invite(args)
+      :ok -> create_invite(args)
       error -> error
     end
   end

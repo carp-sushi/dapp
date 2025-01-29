@@ -9,7 +9,7 @@ defmodule Dapp.UseCase.Invite.Signup do
   @behaviour Dapp.UseCase
   def execute(args) do
     case Validate.args(args, [:invite_code, :email]) do
-      {:ok, _} -> signup(args)
+      :ok -> signup(args)
       error -> error
     end
   end

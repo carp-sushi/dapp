@@ -11,7 +11,7 @@ defmodule Dapp.Util.Validate do
     if is_nil(map) || missing_keys?(map, keys) do
       Error.new("missing required args: #{inspect(keys)}")
     else
-      {:ok, map}
+      :ok
     end
   end
 
