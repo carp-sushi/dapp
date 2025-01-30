@@ -16,6 +16,7 @@ defmodule Dapp.Http.Controller do
   rescue
     e ->
       Logger.error(Exception.format(:error, e, __STACKTRACE__))
-      Response.send_json(conn, Error.new("internal error"), 500)
+      {:error, error} = Error.new("internal error: check server logs for details")
+      Response.send_json(conn, %{error: error}, 500)
   end
 end
