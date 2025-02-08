@@ -25,3 +25,4 @@ figd-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 .envrc
+.elixir_ls

@@ -37,6 +37,7 @@ defmodule Dapp.MixProject do
   defp deps do
     [
       {:ecto_identifier, "~> 0.2.0"},
+      {:ecto_job, "~> 3.1"},
       {:ecto_sql, "~> 3.9.2"},
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.7.2"},

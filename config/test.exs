@@ -11,5 +11,9 @@ config :dapp, Dapp.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 4
 
+# Job queue doesn't play well with the ecto sandbox
+config :dapp,
+  job_queue_disabled: true
+
 # Print warnings and errors running tests
 config :logger, level: :warning
