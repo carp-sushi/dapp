@@ -24,6 +24,7 @@ defmodule Dapp.Data.Repo.InviteRepo do
     |> Repo.transaction()
     |> case do
       {:ok, result} -> {:ok, result.invite}
+      {:error, cs} -> Error.new(cs, "failed to create invite")
       {:error, _name, cs, _changes_so_far} -> Error.new(cs, "failed to create invite")
     end
   end
@@ -32,20 +33,16 @@ defmodule Dapp.Data.Repo.InviteRepo do
   Look up an invite using id and email address.
   """
   def lookup(id, email) do
-    case query_invite(id, email) do
-      nil -> Error.new("invite does not exist or has already been consumed")
-      invite -> {:ok, invite}
-    end
-  end
-
-  # Get invite helper
-  defp query_invite(id, email) do
     Repo.one(
       from(i in Invite,
         where: i.id == ^id and i.email == ^email and is_nil(i.consumed_at),
         select: i
       )
     )
+    |> case do
+      nil -> Error.new("invite does not exist or has already been consumed")
+      invite -> {:ok, invite}
+    end
   end
 
   @doc """
@@ -64,6 +61,7 @@ defmodule Dapp.Data.Repo.InviteRepo do
     |> Repo.transaction()
     |> case do
       {:ok, result} -> {:ok, result.user}
+      {:error, cs} -> Error.new(cs, "signup failure")
       {:error, _name, cs, _changes_so_far} -> Error.new(cs, "signup failure")
     end
   end
