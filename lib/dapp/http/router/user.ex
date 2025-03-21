@@ -4,9 +4,13 @@ defmodule Dapp.Http.Router.User do
   """
   use Plug.Router
 
-  alias Dapp.Http.{Controller, Response}
-  alias Dapp.Rbac.{Access, Auth, Header}
-  alias Dapp.UseCase.User.{GetProfile, ListUsers}
+  alias Dapp.Http.Controller
+  alias Dapp.Http.Response
+  alias Dapp.Rbac.Access
+  alias Dapp.Rbac.Auth
+  alias Dapp.Rbac.Header
+  alias Dapp.UseCase.User.GetProfile
+  alias Dapp.UseCase.User.ListUsers
 
   plug(:match)
   plug(Header)

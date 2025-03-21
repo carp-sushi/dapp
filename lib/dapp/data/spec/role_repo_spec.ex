@@ -3,5 +3,6 @@ defmodule Dapp.Data.Spec.RoleRepoSpec do
   Data layer specification for managing roles.
   """
   alias Dapp.Data.Schema.Role
+
   @callback all :: list(Role.t())
 end

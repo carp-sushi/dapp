@@ -1,11 +1,12 @@
 defmodule Dapp.Data.Repo.InviteRepoTest do
   use ExUnit.Case, async: true
+
+  alias Dapp.Data.Repo.InviteRepo
   alias Dapp.Data.Repo.UserRepo
   alias Dapp.Repo
   alias Ecto.Adapters.SQL.Sandbox
 
   # Repo being tested
-  alias Dapp.Data.Repo.InviteRepo
 
   # Setup test context
   setup do

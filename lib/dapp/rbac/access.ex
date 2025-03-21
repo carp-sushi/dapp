@@ -3,7 +3,9 @@ defmodule Dapp.Rbac.Access do
   Controls access to protected routes.
   """
   use Dapp.Data.Keeper
+
   import Plug.Conn
+
   alias Dapp.Http.Response
 
   # When not provided explicitly, allow access to users with these roles.

@@ -1,7 +1,6 @@
 defmodule Dapp.Util.Clock do
   @moduledoc "Date and time helpers"
   def now do
-    NaiveDateTime.utc_now()
-    |> NaiveDateTime.truncate(:second)
+    NaiveDateTime.truncate(NaiveDateTime.utc_now(), :second)
   end
 end

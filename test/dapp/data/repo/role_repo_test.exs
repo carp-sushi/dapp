@@ -1,9 +1,10 @@
 defmodule Dapp.Data.Repo.RoleRepoTest do
   use ExUnit.Case, async: true
+
+  alias Dapp.Data.Repo.RoleRepo
   alias Ecto.Adapters.SQL.Sandbox
 
   # Repo being tested
-  alias Dapp.Data.Repo.RoleRepo
 
   # Set up SQL sandbox.
   setup do
@@ -14,7 +15,7 @@ defmodule Dapp.Data.Repo.RoleRepoTest do
   describe "RoleRepo" do
     test "should return all stored roles" do
       size = :rand.uniform(5)
-      FakeData.generate_roles(size) |> Enum.each(&Dapp.Repo.insert!/1)
+      size |> FakeData.generate_roles() |> Enum.each(&Dapp.Repo.insert!/1)
       roles = RoleRepo.all()
       assert length(roles) == size
     end

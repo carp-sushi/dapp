@@ -2,8 +2,9 @@ defmodule Dapp.Data.Schema.Role do
   @moduledoc """
   Schema data mapper for the roles table.
   """
-  import Ecto.Changeset
   use Ecto.Schema
+
+  import Ecto.Changeset
 
   alias Dapp.Dto
 
@@ -25,7 +26,6 @@ defmodule Dapp.Data.Schema.Role do
 
   # Map a role schema struct to a data transfer object.
   defimpl Dto, for: __MODULE__ do
-    def from_schema(struct),
-      do: %{id: struct.id, name: struct.name}
+    def from_schema(struct), do: %{id: struct.id, name: struct.name}
   end
 end

@@ -2,9 +2,10 @@ defmodule Dapp.Util.Validate do
   @moduledoc """
   Validation helpers.
   """
+  import Ecto.Changeset
+
   alias Dapp.Error
   alias Ecto.Changeset
-  import Ecto.Changeset
 
   @doc "Execute a function with an input map if it contains all required keys."
   def args(map, keys) do

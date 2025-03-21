@@ -4,10 +4,11 @@ defmodule Dapp.Data.Repo.UserRepo do
   """
   @behaviour Dapp.Data.Spec.UserRepoSpec
 
-  alias Dapp.Data.Schema.User
-  alias Dapp.{Error, Repo}
-
   import Ecto.Query
+
+  alias Dapp.Data.Schema.User
+  alias Dapp.Error
+  alias Dapp.Repo
 
   # Sets a maximum on query result size.
   @max_records Application.compile_env(:dapp, :max_records)
@@ -25,8 +26,9 @@ defmodule Dapp.Data.Repo.UserRepo do
 
   @doc "Query for the user with the given blockchain address."
   def get_by_address(blockchain_address) do
-    unless is_nil(blockchain_address) do
-      Repo.get_by(User, blockchain_address: blockchain_address)
+    if !is_nil(blockchain_address) do
+      User
+      |> Repo.get_by(blockchain_address: blockchain_address)
       |> Repo.preload(:role)
     end
   end

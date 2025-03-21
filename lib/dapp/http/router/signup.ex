@@ -4,7 +4,9 @@ defmodule Dapp.Http.Router.Signup do
   """
   use Plug.Router
 
-  alias Dapp.Http.{Controller, Request.SignupRequest, Response}
+  alias Dapp.Http.Controller
+  alias Dapp.Http.Request.SignupRequest
+  alias Dapp.Http.Response
   alias Dapp.Rbac.Header
   alias Dapp.UseCase.Invite.Signup
 

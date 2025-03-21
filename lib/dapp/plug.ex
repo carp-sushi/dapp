@@ -3,7 +3,9 @@ defmodule Dapp.Plug do
   Top-level plug: handles health requests or forwards to internal api routers.
   """
   use Plug.Router
-  alias Dapp.Http.{Response, Router}
+
+  alias Dapp.Http.Response
+  alias Dapp.Http.Router
 
   if Mix.env() == :dev do
     use Plug.Debugger, otp_app: :dapp

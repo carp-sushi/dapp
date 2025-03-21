@@ -43,6 +43,7 @@ defmodule Dapp.MixProject do
       {:plug_cowboy, "~> 2.7.3"},
       {:postgrex, "~> 0.19"},
       {:hammox, "~> 0.7", only: :test},
+      {:styler, "~> 1.4.1", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7.11", only: [:dev, :test], runtime: false}
     ]
   end

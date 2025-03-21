@@ -1,5 +1,6 @@
 defmodule Dapp.UseCase.Invite.CreateInviteTest do
   use ExUnit.Case, async: true
+
   import Hammox
 
   # Use case under test
@@ -30,7 +31,7 @@ defmodule Dapp.UseCase.Invite.CreateInviteTest do
     end
 
     test "should fail to create a new invite given invalid args", ctx do
-      args = Map.merge(ctx.args, %{email: "a@"})
+      args = Map.put(ctx.args, :email, "a@")
       assert {:error, %{message: "invalid invite"}} = CreateInvite.execute(args)
     end
   end

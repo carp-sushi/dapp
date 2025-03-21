@@ -2,30 +2,24 @@ defmodule FakeData do
   @moduledoc """
   Test helper functions for generating fake data.
   """
-  alias Dapp.Data.Schema.{Invite, Role, User}
+  alias Dapp.Data.Schema.Invite
+  alias Dapp.Data.Schema.Role
+  alias Dapp.Data.Schema.User
 
   @doc "Generate a fake blockchain address."
-  def generate_blockchain_address,
-    do: "tp#{Nanoid.generate(39)}" |> String.downcase()
+  def generate_blockchain_address, do: String.downcase("tp#{Nanoid.generate(39)}")
 
   @doc "Generate a fake email address"
-  def generate_email_addresss,
-    do: "email#{Nanoid.generate(5)}@fakedomain.com"
+  def generate_email_addresss, do: "email#{Nanoid.generate(5)}@fakedomain.com"
 
   @doc "Generate a fake name"
-  def generate_name,
-    do: "name#{Nanoid.generate(5)}"
+  def generate_name, do: "name#{Nanoid.generate(5)}"
 
   @doc "Generate a fake role"
-  def generate_role,
-    do: %Role{
-      id: :rand.uniform(100),
-      name: generate_name()
-    }
+  def generate_role, do: %Role{id: :rand.uniform(100), name: generate_name()}
 
   @doc "Generate a sequence of fake roles"
-  def generate_roles(size),
-    do: Stream.repeatedly(&generate_role/0) |> Enum.take(size)
+  def generate_roles(size), do: (&generate_role/0) |> Stream.repeatedly() |> Enum.take(size)
 
   @doc "Generate a fake user"
   def generate_user(role_id \\ nil),
@@ -38,8 +32,7 @@ defmodule FakeData do
     }
 
   @doc "Generate a sequence of fake users"
-  def generate_users(size),
-    do: Stream.repeatedly(&generate_user/0) |> Enum.take(size)
+  def generate_users(size), do: (&generate_user/0) |> Stream.repeatedly() |> Enum.take(size)
 
   @doc "Generate a fake invite"
   def generate_invite(user_id \\ nil),

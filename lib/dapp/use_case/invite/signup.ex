@@ -2,11 +2,13 @@ defmodule Dapp.UseCase.Invite.Signup do
   @moduledoc """
   Add new users with valid invites.
   """
-  alias Dapp.Dto
-  alias Dapp.Util.Validate
+  @behaviour Dapp.UseCase
+
   use Dapp.Data.Keeper
 
-  @behaviour Dapp.UseCase
+  alias Dapp.Dto
+  alias Dapp.Util.Validate
+
   def execute(args) do
     case Validate.args(args, [:invite_code, :email]) do
       :ok -> signup(args)

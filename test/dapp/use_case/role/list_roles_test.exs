@@ -1,5 +1,6 @@
 defmodule Dapp.UseCase.Role.ListRolesTest do
   use ExUnit.Case, async: true
+
   import Hammox
 
   # Use case being tested

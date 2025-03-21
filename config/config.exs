@@ -1,15 +1,15 @@
 import Config
 
-# Base compile time repo config
-config :dapp,
-  ecto_repos: [Dapp.Repo]
-
 # Base compile time dapp config
 config :dapp,
   auth_header: "x-account-address",
   max_records: 100,
   uri_base: "/dapp/api/v1",
   http_port: 8080
+
+# Base compile time repo config
+config :dapp,
+  ecto_repos: [Dapp.Repo]
 
 # Configure nanoid size, alphabet.
 config :nanoid,

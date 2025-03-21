@@ -4,12 +4,14 @@ defmodule Dapp.Data.Repo.InviteRepo do
   """
   @behaviour Dapp.Data.Spec.InviteRepoSpec
 
-  alias Dapp.{Error, Repo}
-  alias Dapp.Data.Schema.{Invite, User}
-  alias Dapp.Util.Clock
-
-  alias Ecto.Multi
   import Ecto.Query
+
+  alias Dapp.Data.Schema.Invite
+  alias Dapp.Data.Schema.User
+  alias Dapp.Error
+  alias Dapp.Repo
+  alias Dapp.Util.Clock
+  alias Ecto.Multi
 
   @doc "Create an invite."
   def create(params) do
@@ -43,7 +45,7 @@ defmodule Dapp.Data.Repo.InviteRepo do
   @doc "Create a user from an invite and mark the invite as consumed."
   def signup(params, invite) do
     user_params = Map.put(params, :role_id, invite.role_id)
-    user_changeset = %User{id: Nanoid.generate()} |> User.changeset(user_params)
+    user_changeset = User.changeset(%User{id: Nanoid.generate()}, user_params)
     invite_changeset = Invite.changeset(invite, %{consumed_at: Clock.now()})
 
     Multi.new()

@@ -2,11 +2,13 @@ defmodule Dapp.Data.Schema.Invite do
   @moduledoc """
   Schema data mapper for the invites table.
   """
-  import Ecto.Changeset
   use Ecto.Schema
+
+  import Ecto.Changeset
   import EctoCommons.EmailValidator
 
-  alias Dapp.Data.Schema.{Role, User}
+  alias Dapp.Data.Schema.Role
+  alias Dapp.Data.Schema.User
   alias Dapp.Dto
 
   # Define type
@@ -35,7 +37,6 @@ defmodule Dapp.Data.Schema.Invite do
 
   # Map an invite schema struct to a data transfer object.
   defimpl Dto, for: __MODULE__ do
-    def from_schema(struct),
-      do: %{code: struct.id, email: struct.email}
+    def from_schema(struct), do: %{code: struct.id, email: struct.email}
   end
 end

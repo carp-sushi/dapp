@@ -1,5 +1,6 @@
 defmodule Dapp.UseCase.Invite.SignupTest do
   use ExUnit.Case, async: true
+
   import Hammox
 
   # Use case under test
@@ -25,7 +26,7 @@ defmodule Dapp.UseCase.Invite.SignupTest do
     end
 
     test "should fail to create a new user when the invite is not found", ctx do
-      args = Map.merge(ctx.args, %{invite_code: Nanoid.generate()})
+      args = Map.put(ctx.args, :invite_code, Nanoid.generate())
       assert {:error, %{message: "invite not found"}} = Signup.execute(args)
     end
 

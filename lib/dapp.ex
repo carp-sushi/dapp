@@ -1,6 +1,7 @@
 defmodule Dapp do
   @moduledoc false
   use Application
+
   require Logger
 
   @port Application.compile_env(:dapp, :http_port, 8080)

@@ -1,12 +1,12 @@
 defmodule UserUtil do
   @moduledoc false
   import Hammox
+
   alias Dapp.Data.Schema.Role
 
   @doc "Setup mock for listing recent users."
   def mock_list_users(size) do
-    MockUserRepo
-    |> expect(:list_recent, fn -> FakeData.generate_users(size) end)
+    expect(MockUserRepo, :list_recent, fn -> FakeData.generate_users(size) end)
   end
 
   @doc "Setup mock for getting a user by blockchain address."
@@ -20,9 +20,8 @@ defmodule UserUtil do
     base = FakeData.generate_user()
     user = %{base | role: %Role{id: base.role_id, name: name}}
 
-    MockUserRepo
-    |> expect(:get_by_address, fn blockchain_address ->
-      if user.blockchain_address == blockchain_address, do: user, else: nil
+    expect(MockUserRepo, :get_by_address, fn blockchain_address ->
+      if user.blockchain_address == blockchain_address, do: user
     end)
 
     user

@@ -3,6 +3,7 @@ defmodule Mix.Tasks.Migrate do
   A custom mix task that runs ecto migrations.
   """
   use Mix.Task
+
   require Application
 
   def run(_) do

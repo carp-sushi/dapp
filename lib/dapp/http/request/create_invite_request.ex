@@ -2,11 +2,11 @@ defmodule Dapp.Http.Request.CreateInviteRequest do
   @moduledoc """
   Validate requests to create invites.
   """
-  alias Dapp.Error
-
-  alias Ecto.Changeset
   import Ecto.Changeset
   import EctoCommons.EmailValidator
+
+  alias Dapp.Error
+  alias Ecto.Changeset
 
   @doc "Gather and validate use case args for creating an invite."
   def validate(conn) do

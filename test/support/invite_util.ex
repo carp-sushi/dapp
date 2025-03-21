@@ -1,16 +1,17 @@
 defmodule InviteUtil do
   @moduledoc false
-  alias Dapp.Data.Schema.{Invite, User}
+  import Hammox
+
+  alias Dapp.Data.Schema.Invite
+  alias Dapp.Data.Schema.User
   alias Dapp.Error
   alias Ecto.Changeset
-  import Hammox
 
   @doc """
   Set up a mock for creating validated invites.
   """
   def mock_create_invite do
-    MockInviteRepo
-    |> expect(:create, fn params ->
+    expect(MockInviteRepo, :create, fn params ->
       %Invite{id: Nanoid.generate()}
       |> Invite.changeset(params)
       |> evaluate_changeset("invalid invite")
@@ -23,8 +24,7 @@ defmodule InviteUtil do
   def mock_lookup_invite do
     invite = FakeData.generate_invite()
 
-    MockInviteRepo
-    |> expect(:lookup, fn id, email ->
+    expect(MockInviteRepo, :lookup, fn id, email ->
       if id == invite.id && email == invite.email do
         {:ok, invite}
       else
@@ -39,8 +39,7 @@ defmodule InviteUtil do
   Create a mock for signup (creates a user).
   """
   def mock_signup do
-    MockInviteRepo
-    |> expect(:signup, fn params, invite ->
+    expect(MockInviteRepo, :signup, fn params, invite ->
       %User{id: Nanoid.generate()}
       |> User.changeset(Map.put(params, :role_id, invite.role_id))
       |> evaluate_changeset("invalid user params")

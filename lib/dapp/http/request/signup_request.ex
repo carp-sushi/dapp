@@ -2,11 +2,11 @@ defmodule Dapp.Http.Request.SignupRequest do
   @moduledoc """
   Validate signup requests.
   """
-  alias Dapp.Error
-
-  alias Ecto.Changeset
   import Ecto.Changeset
   import EctoCommons.EmailValidator
+
+  alias Dapp.Error
+  alias Ecto.Changeset
 
   @doc "Gather and validate use case args for user signup."
   def validate(conn) do

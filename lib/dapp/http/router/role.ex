@@ -4,8 +4,11 @@ defmodule Dapp.Http.Router.Role do
   """
   use Plug.Router
 
-  alias Dapp.Http.{Controller, Response}
-  alias Dapp.Rbac.{Access, Auth, Header}
+  alias Dapp.Http.Controller
+  alias Dapp.Http.Response
+  alias Dapp.Rbac.Access
+  alias Dapp.Rbac.Auth
+  alias Dapp.Rbac.Header
   alias Dapp.UseCase.Role.ListRoles
 
   plug(:match)
