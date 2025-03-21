@@ -4,6 +4,7 @@ defmodule Dapp.Data.Schema.Invite do
   """
   import Ecto.Changeset
   use Ecto.Schema
+  import EctoCommons.EmailValidator
 
   alias Dapp.Data.Schema.{Role, User}
   alias Dapp.Dto
@@ -25,7 +26,8 @@ defmodule Dapp.Data.Schema.Invite do
     struct
     |> cast(params, [:email, :role_id, :user_id, :consumed_at])
     |> validate_required([:email, :role_id, :user_id])
-    |> validate_length(:email, min: 3, max: 255)
+    |> validate_length(:email, max: 255)
+    |> validate_email(:email, checks: [:pow])
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:role_id)
     |> unique_constraint(:email)

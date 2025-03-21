@@ -4,6 +4,7 @@ defmodule Dapp.Data.Schema.User do
   """
   import Ecto.Changeset
   use Ecto.Schema
+  import EctoCommons.EmailValidator
 
   alias Dapp.Data.Schema.Role
   alias Dapp.Dto
@@ -25,8 +26,9 @@ defmodule Dapp.Data.Schema.User do
     struct
     |> cast(params, [:blockchain_address, :email, :name, :role_id])
     |> validate_required([:blockchain_address, :email, :role_id])
-    |> validate_length(:email, min: 3, max: 255)
     |> validate_length(:name, max: 255)
+    |> validate_length(:email, max: 255)
+    |> validate_email(:email, checks: [:pow])
     |> unique_constraint(:blockchain_address)
     |> unique_constraint(:email)
     |> foreign_key_constraint(:role_id)

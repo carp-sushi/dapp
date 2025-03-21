@@ -36,6 +36,7 @@ defmodule Dapp.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:ecto_commons, "~> 0.3.4"},
       {:ecto_identifier, "~> 0.2.0"},
       {:ecto_sql, "~> 3.12"},
       {:jason, "~> 1.4"},

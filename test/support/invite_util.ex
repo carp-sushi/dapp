@@ -25,9 +25,10 @@ defmodule InviteUtil do
 
     MockInviteRepo
     |> expect(:lookup, fn id, email ->
-      case id == invite.id && email == invite.email do
-        true -> {:ok, invite}
-        false -> Error.new("invite not found")
+      if id == invite.id && email == invite.email do
+        {:ok, invite}
+      else
+        Error.new("invite not found")
       end
     end)
 
@@ -50,9 +51,10 @@ defmodule InviteUtil do
   # Evaluate a changeset, returning either a data structure or error.
   #
   defp evaluate_changeset(changeset, message) do
-    case changeset.valid? do
-      true -> {:ok, Changeset.apply_changes(changeset)}
-      false -> Error.new(changeset, message)
+    if changeset.valid? do
+      {:ok, Changeset.apply_changes(changeset)}
+    else
+      Error.new(changeset, message)
     end
   end
 end

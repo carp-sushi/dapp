@@ -6,6 +6,7 @@ defmodule Dapp.Http.Request.SignupRequest do
 
   alias Ecto.Changeset
   import Ecto.Changeset
+  import EctoCommons.EmailValidator
 
   @doc "Gather and validate use case args for user signup."
   def validate(conn) do
@@ -19,11 +20,13 @@ defmodule Dapp.Http.Request.SignupRequest do
       |> validate_required([:invite_code, :email])
       |> validate_length(:invite_code, max: 21)
       |> validate_length(:name, max: 255)
-      |> validate_length(:email, min: 3, max: 255)
+      |> validate_length(:email, max: 255)
+      |> validate_email(:email, checks: [:pow])
 
-    case changeset.valid? do
-      true -> {:ok, Changeset.apply_changes(changeset)}
-      false -> Error.new(changeset, "invalid signup request")
+    if changeset.valid? do
+      {:ok, Changeset.apply_changes(changeset)}
+    else
+      Error.new(changeset, "invalid signup request")
     end
   end
 end

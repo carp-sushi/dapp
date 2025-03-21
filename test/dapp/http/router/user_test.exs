@@ -1,7 +1,9 @@
 defmodule Dapp.Http.Router.UserTest do
   use ExUnit.Case, async: true
-  use Plug.Test
+
   import Hammox
+  import Plug.Test
+  import Plug.Conn
 
   # Modules under test
   alias Dapp.Http.Router.User, as: UserRouter

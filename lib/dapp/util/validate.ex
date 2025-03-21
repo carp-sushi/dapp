@@ -60,9 +60,10 @@ defmodule Dapp.Util.Validate do
   defp validate_address_prefix(changeset, address) do
     network_prefix = System.get_env("NETWORK_PREFIX", "pb")
 
-    case String.starts_with?(address, network_prefix) do
-      true -> changeset
-      false -> add_error(changeset, :blockchain_address, "must have prefix: #{network_prefix}")
+    if String.starts_with?(address, network_prefix) do
+      changeset
+    else
+      add_error(changeset, :blockchain_address, "must have prefix: #{network_prefix}")
     end
   end
 end

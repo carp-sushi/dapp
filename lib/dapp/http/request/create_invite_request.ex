@@ -1,4 +1,4 @@
-defmodule Dapp.Http.Request.InviteRequest do
+defmodule Dapp.Http.Request.CreateInviteRequest do
   @moduledoc """
   Validate requests to create invites.
   """
@@ -6,6 +6,7 @@ defmodule Dapp.Http.Request.InviteRequest do
 
   alias Ecto.Changeset
   import Ecto.Changeset
+  import EctoCommons.EmailValidator
 
   @doc "Gather and validate use case args for creating an invite."
   def validate(conn) do
@@ -17,12 +18,14 @@ defmodule Dapp.Http.Request.InviteRequest do
       {data, types}
       |> Changeset.cast(conn.body_params, keys)
       |> validate_required(keys)
-      |> validate_length(:email, min: 3, max: 255)
+      |> validate_length(:email, max: 255)
+      |> validate_email(:email, checks: [:pow])
       |> validate_number(:role_id, greater_than: 0)
 
-    case changeset.valid? do
-      true -> {:ok, Changeset.apply_changes(changeset)}
-      false -> Error.new(changeset, "invalid invite request")
+    if changeset.valid? do
+      {:ok, Changeset.apply_changes(changeset)}
+    else
+      Error.new(changeset, "invalid invite request")
     end
   end
 end
