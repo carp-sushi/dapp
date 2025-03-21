@@ -3,7 +3,6 @@
 
 # Common imports used frequently
 import Enum, only: [map: 2, reduce: 3, filter: 2]
-import IExHelpers
 import String, only: [upcase: 1, downcase: 1]
 
 alias Dapp.Data.Repo.InviteRepo
@@ -47,21 +46,3 @@ IEx.configure(
     "#{IO.ANSI.green()}%prefix#{IO.ANSI.reset()}" <>
       "(#{IO.ANSI.cyan()}%counter#{IO.ANSI.reset()}) >"
 )
-
-# Helper functions
-defmodule IExHelpers do
-  @moduledoc false
-  def reload! do
-    Mix.Task.reenable("compile.elixir")
-    Application.stop(Mix.Project.config()[:app])
-    Mix.Task.run("compile.elixir")
-    Application.start(Mix.Project.config()[:app])
-  end
-
-  def migrate! do
-    path = Application.app_dir(:dapp, "priv/repo/migrations")
-    Ecto.Migrator.run(Dapp.Repo, path, :up, all: true)
-  end
-end
-
-# Import helper functions into IEx session scope
