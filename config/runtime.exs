@@ -8,7 +8,7 @@ if config_env() == :prod do
 
   # Verify network prefix has been set correctly
   if System.get_env("NETWORK_PREFIX") not in ["tp", "pb"] do
-    raise "NETWORK_PREFIX must be set to \"tp\" or \"pb\""
+    raise ~s(NETWORK_PREFIX must be set to "tp" or "pb")
   end
 
   config :dapp, Dapp.Repo,
