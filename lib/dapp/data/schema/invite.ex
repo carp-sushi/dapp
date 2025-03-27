@@ -36,7 +36,7 @@ defmodule Dapp.Data.Schema.Invite do
   end
 
   # Map an invite schema struct to a data transfer object.
-  defimpl Dto, for: __MODULE__ do
+  defimpl Dto do
     def from_schema(struct), do: %{code: struct.id, email: struct.email}
   end
 end

@@ -25,7 +25,7 @@ defmodule Dapp.Data.Schema.Role do
   end
 
   # Map a role schema struct to a data transfer object.
-  defimpl Dto, for: __MODULE__ do
+  defimpl Dto do
     def from_schema(struct), do: %{id: struct.id, name: struct.name}
   end
 end
