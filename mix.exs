@@ -19,7 +19,8 @@ defmodule Dapp.MixProject do
           FakeData,
           InviteUtil,
           RoleUtil,
-          UserUtil
+          UserUtil,
+          Dapp.Migrator
         ]
       ]
     ]
