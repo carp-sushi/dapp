@@ -3,7 +3,7 @@ import Config
 # Base compile time dapp config
 config :dapp,
   auth_header: "x-account-address",
-  max_records: 100,
+  max_records: 10,
   uri_base: "/dapp/api/v1",
   http_port: 8080
 
