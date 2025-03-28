@@ -11,7 +11,7 @@ defmodule Dapp do
     Logger.info("Running on port #{@port}")
 
     Supervisor.start_link(
-      [Dapp.Repo, {Plug.Cowboy, scheme: :http, plug: Dapp.Plug, options: [port: @port]}],
+      [Dapp.Repo, {Bandit, plug: Dapp.Plug, port: @port}],
       strategy: :one_for_one,
       name: Dapp.Supervisor
     )
