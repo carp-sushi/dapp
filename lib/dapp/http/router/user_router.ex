@@ -1,4 +1,4 @@
-defmodule Dapp.Http.Router.User do
+defmodule Dapp.Http.Router.UserRouter do
   @moduledoc """
   Handle user HTTP requests.
   """

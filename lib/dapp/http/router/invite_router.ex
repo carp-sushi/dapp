@@ -1,24 +1,28 @@
-defmodule Dapp.Http.Router.Signup do
+defmodule Dapp.Http.Router.InviteRouter do
   @moduledoc """
-  Handle signup HTTP requests.
+  Handle invite HTTP requests.
   """
   use Plug.Router
 
   alias Dapp.Http.Controller
-  alias Dapp.Http.Request.SignupRequest
+  alias Dapp.Http.Request.CreateInviteRequest
   alias Dapp.Http.Response
+  alias Dapp.Rbac.Access
+  alias Dapp.Rbac.Auth
   alias Dapp.Rbac.Header
-  alias Dapp.UseCase.Invite.Signup
+  alias Dapp.UseCase.Invite.CreateInvite
 
   plug(:match)
   plug(Header)
+  plug(Auth)
+  plug(Access, roles: ["Admin"])
   plug(Plug.Parsers, parsers: [:json], json_decoder: Jason)
   plug(:dispatch)
 
-  # Allow invited users to signup.
+  # Admins can create invites.
   post "/" do
-    case SignupRequest.validate(conn) do
-      {:ok, args} -> Controller.execute(conn, Signup, args)
+    case CreateInviteRequest.validate(conn) do
+      {:ok, args} -> Controller.execute(conn, CreateInvite, args)
       {:error, error} -> Response.bad_request(conn, error)
     end
   end

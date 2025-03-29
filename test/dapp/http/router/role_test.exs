@@ -6,7 +6,7 @@ defmodule Dapp.Http.Router.RoleTest do
   import Plug.Test
 
   # Modules under test
-  alias Dapp.Http.Router.Role, as: RoleRouter
+  alias Dapp.Http.Router.RoleRouter
 
   # Required auth header
   @auth_header Application.compile_env(:dapp, :auth_header)

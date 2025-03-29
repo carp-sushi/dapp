@@ -1,16 +1,15 @@
-defmodule Dapp.Http.Router.Invite do
+defmodule Dapp.Http.Router.RoleRouter do
   @moduledoc """
-  Handle invite HTTP requests.
+  Handle role HTTP requests.
   """
   use Plug.Router
 
   alias Dapp.Http.Controller
-  alias Dapp.Http.Request.CreateInviteRequest
   alias Dapp.Http.Response
   alias Dapp.Rbac.Access
   alias Dapp.Rbac.Auth
   alias Dapp.Rbac.Header
-  alias Dapp.UseCase.Invite.CreateInvite
+  alias Dapp.UseCase.Role.ListRoles
 
   plug(:match)
   plug(Header)
@@ -19,12 +18,9 @@ defmodule Dapp.Http.Router.Invite do
   plug(Plug.Parsers, parsers: [:json], json_decoder: Jason)
   plug(:dispatch)
 
-  # Admins can create invites.
-  post "/" do
-    case CreateInviteRequest.validate(conn) do
-      {:ok, args} -> Controller.execute(conn, CreateInvite, args)
-      {:error, error} -> Response.bad_request(conn, error)
-    end
+  # Admins can get available roles.
+  get "/" do
+    Controller.execute(conn, ListRoles)
   end
 
   # Catch-all responds with a 404.

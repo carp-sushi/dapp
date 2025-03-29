@@ -5,7 +5,10 @@ defmodule Dapp.Plug do
   use Plug.Router
 
   alias Dapp.Http.Response
-  alias Dapp.Http.Router
+  alias Dapp.Http.Router.InviteRouter
+  alias Dapp.Http.Router.RoleRouter
+  alias Dapp.Http.Router.SignupRouter
+  alias Dapp.Http.Router.UserRouter
 
   if Mix.env() == :dev do
     use Plug.Debugger, otp_app: :dapp
@@ -19,10 +22,10 @@ defmodule Dapp.Plug do
   @uri_base Application.compile_env(:dapp, :uri_base)
 
   # Top-level routing
-  forward("#{@uri_base}/invites", to: Router.Invite)
-  forward("#{@uri_base}/roles", to: Router.Role)
-  forward("#{@uri_base}/signup", to: Router.Signup)
-  forward("#{@uri_base}/users", to: Router.User)
+  forward("#{@uri_base}/invites", to: InviteRouter)
+  forward("#{@uri_base}/roles", to: RoleRouter)
+  forward("#{@uri_base}/signup", to: SignupRouter)
+  forward("#{@uri_base}/users", to: UserRouter)
 
   # Health checks.
   get "/health/*glob" do

@@ -1,5 +1,7 @@
 defmodule Dapp do
-  @moduledoc false
+  @moduledoc """
+  The application entry point.
+  """
   use Application
 
   require Logger
@@ -10,8 +12,13 @@ defmodule Dapp do
   def start(_type, _args) do
     Logger.info("Running on port #{@port}")
 
+    children = [
+      Dapp.Repo,
+      {Bandit, plug: Dapp.Plug, port: @port}
+    ]
+
     Supervisor.start_link(
-      [Dapp.Repo, {Bandit, plug: Dapp.Plug, port: @port}],
+      children,
       strategy: :one_for_one,
       name: Dapp.Supervisor
     )
