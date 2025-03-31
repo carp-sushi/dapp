@@ -1,5 +1,5 @@
 .PHONY: all
-all: format compile
+all: format compile test
 
 .PHONY: format
 format:
