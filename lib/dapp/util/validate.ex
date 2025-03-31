@@ -7,22 +7,6 @@ defmodule Dapp.Util.Validate do
   alias Dapp.Error
   alias Ecto.Changeset
 
-  @doc "Execute a function with an input map if it contains all required keys."
-  def args(map, keys) do
-    if is_nil(map) || missing_keys?(map, keys) do
-      Error.new("missing required args: #{inspect(keys)}")
-    else
-      :ok
-    end
-  end
-
-  # Determine whether any of the required args values are missing.
-  defp missing_keys?(map, keys) do
-    Enum.any?(keys, fn key ->
-      !Map.has_key?(map, key)
-    end)
-  end
-
   @doc "Validate a blockhain address in a parameter map."
   def blockchain_address_params(params) do
     data = %{}

@@ -1,15 +1,15 @@
 defmodule Dapp.UseCase.User.ListUsers do
   @moduledoc """
-  List recently created users
+  List recently created users.
   """
-  @behaviour Dapp.UseCase
-
+  use Dapp.UseCase
   use Dapp.Data.Keeper
 
   alias Dapp.Dto
 
-  def execute(_args) do
+  @impl true
+  def execute(_) do
     users = Enum.map(user_repo().list_recent(), &Dto.from_schema/1)
-    {:ok, %{users: users}}
+    success(%{users: users})
   end
 end

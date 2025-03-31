@@ -1,5 +1,5 @@
 defmodule Dapp.Data.Repo.RoleRepoTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
 
   alias Dapp.Data.Repo.RoleRepo
   alias Ecto.Adapters.SQL.Sandbox

@@ -1,5 +1,5 @@
 defmodule Dapp.Data.Repo.InviteRepoTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
 
   alias Dapp.Data.Repo.InviteRepo
   alias Dapp.Data.Repo.UserRepo

@@ -2,14 +2,14 @@ defmodule Dapp.UseCase.Role.ListRoles do
   @moduledoc """
   List all available roles.
   """
-  @behaviour Dapp.UseCase
-
+  use Dapp.UseCase
   use Dapp.Data.Keeper
 
   alias Dapp.Dto
 
-  def execute(_args) do
+  @impl true
+  def execute(_) do
     roles = Enum.map(role_repo().all(), &Dto.from_schema/1)
-    {:ok, %{roles: roles}}
+    success(%{roles: roles})
   end
 end
